@@ -1,27 +1,28 @@
 #!/usr/bin/python3
+"""First Algorythm interview"""
 
 def canUnlockAll(boxes):
     """
-    Determines if all the boxes can be opened.
+    Determine if all boxes can be opened.
 
     Args:
-    boxes (list of lists): A list of lists where each inner list represents a box
-                           and contains keys to other boxes.
+    boxes (list): A list of lists where each inner list represents a box and its keys.
 
     Returns:
     bool: True if all boxes can be opened, False otherwise.
     """
-    n = len(boxes)
-    visited = [False] * n
-    visited[0] = True  # The first box is unlocked
+    if not boxes:
+        return False
 
-    stack = [0]  # Start with the first box
+    keys = [0]  # List to store keys available to open boxes
+    unlocked = [False] * len(boxes)  # List to track if a box is unlocked
 
-    while stack:
-        box = stack.pop()
+    while keys:
+        box = keys.pop(0)
+        unlocked[box] = True
+
         for key in boxes[box]:
-            if 0 <= key < n and not visited[key]:
-                visited[key] = True
-                stack.append(key)
+            if key < len(boxes) and not unlocked[key]:
+                keys.append(key)
 
-    return all(visited)
+    return all(unlocked)
