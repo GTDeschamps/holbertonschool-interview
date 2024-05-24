@@ -73,12 +73,6 @@ heap_t *heap_insert(heap_t **root, int value)
 
 	insert_point = find_insertion_point(*root);
 
-	if (!insert_point)
-	{
-		*root = binary_tree_node(NULL, value);
-		return (*root);
-	}
-
 	new_node = binary_tree_node(insert_point, value);
 
 	if (!new_node)
@@ -89,6 +83,6 @@ heap_t *heap_insert(heap_t **root, int value)
 	else
 		insert_point->right = new_node;
 
-	bubble_up(new_node);
+	bubble_up(insert_point);
 	return (new_node);
 }
