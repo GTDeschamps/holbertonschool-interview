@@ -83,6 +83,6 @@ heap_t *heap_insert(heap_t **root, int value)
 	else
 		insert_point->right = new_node;
 
-	bubble_up(insert_point);
+	bubble_up(new_node);
 	return (new_node);
 }
