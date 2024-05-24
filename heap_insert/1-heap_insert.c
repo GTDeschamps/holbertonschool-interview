@@ -18,13 +18,14 @@ void swap_values(heap_t *a, heap_t *b)
  * bubble_up - Ensures the max heap property by bubbling up
  * @node: Node to start bubbling up from
  */
-void bubble_up(heap_t *node)
+heap_t *bubble_up(heap_t *node)
 {
 	while (node->parent && node->n > node->parent->n)
 	{
 		swap_values(node, node->parent);
 		node = node->parent;
 	}
+	return (node);
 }
 
 /**
@@ -83,6 +84,6 @@ heap_t *heap_insert(heap_t **root, int value)
 	else
 		insert_point->right = new_node;
 
-	bubble_up(new_node);
+	new_node = bubble_up(new_node);
 	return (new_node);
 }
