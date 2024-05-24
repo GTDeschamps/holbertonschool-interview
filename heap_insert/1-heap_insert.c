@@ -10,9 +10,9 @@
 size_t binary_tree_size(const binary_tree_t *tree)
 {
 	if (tree == NULL)
-		return (-1);
+		return (0);
 
-	return (1 + binary_tree_size(tree->left) + binary_tree_size(tree->right));
+	return (binary_tree_size(tree->left) + binary_tree_size(tree->right) + 1);
 }
 
 /**
@@ -27,12 +27,21 @@ size_t binary_tree_height(const binary_tree_t *tree)
 	int right_height = 0;
 
 	if (tree == NULL)
-		return (-1);
+		return (0);
 
-	left_height = binary_tree_height(tree->left);
-	right_height = binary_tree_height(tree->right);
+	if (tree->left == NULL && tree->right == NULL)
+		return (0);
 
-	return ((left_height > right_height ? left_height : right_height) + 1);
+	if (tree->left != NULL)
+		left_height = binary_tree_height(tree->left);
+
+	if (tree->right != NULL)
+		right_height = binary_tree_height(tree->right);
+
+	if(left_height > right_height)
+		return (left_height + 1);
+	else
+		return (right_height + 1);
 }
 
  /**
@@ -65,6 +74,33 @@ heap_t *heap_insert(heap_t **root, int value)
 	heapify(new_node);
 
 	return (new_node);
+}
+
+/**
+ * binary_tree_is_perfect - checks if tree is perfect
+ *@tree: tree to check
+ *
+ *Return: 1 perfect 0 not
+ */
+
+int binary_tree_is_perfect(const binary_tree_t *tree)
+{
+	size_t size, i, j, sum = 0, pow;
+
+	if (tree == NULL)
+		return (0);
+
+	size = binary_tree_size(tree);
+
+	for (i = 0; i <= binary_tree_height(tree); i++)
+	{
+		for (j = 0, pow = 1; j < i; j++)
+			pow *= 2;
+		sum += pow;
+	}
+	if (sum == size)
+		return (1);
+	return (0);
 }
 
 /**
