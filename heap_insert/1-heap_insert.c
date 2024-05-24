@@ -44,37 +44,6 @@ size_t binary_tree_height(const binary_tree_t *tree)
 		return (right_height + 1);
 }
 
- /**
- * heap_insert - Inserts a value into a Max Binary Heap
- * @root: Double pointer to the root node of the Heap
- * @value: Value to store in the node to be inserted
- * Return: Pointer to the inserted node, or NULL on failure
- */
-
-heap_t *heap_insert(heap_t **root, int value)
-{
-	heap_t *new_node = binary_tree_node(NULL, value);
-	heap_t *parent = NULL;
-
-	if (!new_node)
-		return (NULL);
-
-	if (!*root)
-		return (*root = new_node);
-
-	parent = find_parent(*root);
-
-	new_node->parent = parent;
-
-	if (!parent->left)
-		parent->left = new_node;
-	else
-		parent->right = new_node;
-
-	heapify(new_node);
-
-	return (new_node);
-}
 
 /**
  * binary_tree_is_perfect - checks if tree is perfect
@@ -138,4 +107,36 @@ void heapify(heap_t *node)
 		node->parent->n = temp;
 		node = node->parent;
 	}
+}
+
+ /**
+ * heap_insert - Inserts a value into a Max Binary Heap
+ * @root: Double pointer to the root node of the Heap
+ * @value: Value to store in the node to be inserted
+ * Return: Pointer to the inserted node, or NULL on failure
+ */
+
+heap_t *heap_insert(heap_t **root, int value)
+{
+	heap_t *new_node = binary_tree_node(NULL, value);
+	heap_t *parent = NULL;
+
+	if (!new_node)
+		return (NULL);
+
+	if (!*root)
+		return (*root = new_node);
+
+	parent = find_parent(*root);
+
+	new_node->parent = parent;
+
+	if (!parent->left)
+		parent->left = new_node;
+	else
+		parent->right = new_node;
+
+	heapify(new_node);
+
+	return (new_node);
 }
