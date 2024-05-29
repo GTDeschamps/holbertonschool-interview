@@ -1,6 +1,8 @@
 #!/usr/bin/python3
+"""Interview Exercice """
 
 def minOperations(n):
+    """ Definition for """
     if n < 1:
         return 0
 
