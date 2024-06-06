@@ -1,6 +1,7 @@
-#include "sandpiles.h"
 #include <stdio.h>
+#include <stdlib.h>
 
+#include "sandpiles.h"
 /**
  * print_grid - Prints a 3x3 grid
  * @grid: The grid to print
