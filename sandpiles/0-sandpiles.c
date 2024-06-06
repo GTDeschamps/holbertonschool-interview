@@ -1,97 +1,49 @@
-#include <stdio.h>
 #include "sandpiles.h"
-
-#define SIZE 3
-
-void topple(int grid[3][3])
-{
-/*create grid*/
-	int next[3][3] = {{0}};
-
-	for (int i = 0; i < SIZE; i++)
-	{
-		for (int j = 0; j < SIZE; j++)
-		{
-			int grains = grid[i][j];
-			if (grains >= 4)
-			{
-				grid[i][j] -= 4;
-				if (i > 0)
-					next[i - 1][j] += 1;
-				if (i < SIZE - 1)
-					next[i + 1][j] += 1;
-				if (j > 0)
-					next[i][j - 1] += 1;
-				if (j < SIZE - 1)
-					next[i][j + 1] += 1;
-			}
-			next[i][j] += grid[i][j];
-		}
-	}
-
-	for (int i = 0; i < SIZE; i++)
-	{
-		for (int j = 0; j < SIZE; j++)
-		{
-			grid[i][j] = next[i][j];
-		}
-	}
-}
-
-void print_grid(int grid[3][3])
-{
-/*print the grid*/
-	for (int i = 0; i < SIZE; i++)
-	{
-		for (int j = 0; j < SIZE; j++)
-		{
-			printf("%d ", grid[i][j]);
-		}
-		printf("\n");
-	}
-}
+#include <stdio.h>
 
 void sandpiles_sum(int grid1[3][3], int grid2[3][3])
 {
-	/* Add the two sandpiles together*/
-	for (int i = 0; i < SIZE; i++)
+	int i, j, k, l, sum, toppling;
+	
+	for (i = 0; i < 3; i++)
 	{
-		for (int j = 0; j < SIZE; j++)
+		for (j = 0; j < 3; j++)
 		{
-			grid1[i][j] += grid2[i][j];
+			sum = grid1[i][j] + grid2[i][j];
+			toppling = sum / 4;
+			grid1[i][j] = sum % 4;
+
+			for (k = 0; k < 3; k++)
+			{
+				for (l = 0; l < 3; l++)
+				{
+					if (k == i && l == j)
+					{
+						continue;
+					}
+					grid1[k][l] += toppling;
+				}
+			}
 		}
 	}
 
-	/*Topple the sandpile until it becomes stable*/
 	while (1)
 	{
-		int unstable = 0;
-		for (int i = 0; i < SIZE; i++)
+		toppling = 0;
+		for (i = 0; i < 3; i++)
 		{
-
-			for (int j = 0; j < SIZE; j++)
+			for (j = 0; j < 3; j++)
 			{
-				if (grid1[i][j] >= 4)
+				if (grid1[i][j] > 3)
 				{
-					unstable = 1;
-					break;
+					toppling++;
+					grid1[i][j] -= 4;
 				}
 			}
-			if (unstable)
-				break;
 		}
-
-		if (unstable)
-		{
-			printf("Unstable Sandpile:\n");
-			print_grid(grid1);
-			printf("\n");
-			topple(grid1);
-		}
-		else
+		if (toppling == 0)
 		{
 			break;
 		}
 	}
-	print_grid(grid1);
 }
