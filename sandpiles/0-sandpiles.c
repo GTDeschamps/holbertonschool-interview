@@ -1,6 +1,10 @@
 #include "sandpiles.h"
 #include <stdio.h>
 
+/**
+ * print_grid - Prints a 3x3 grid
+ * @grid: The grid to print
+ */
 void print_grid(int grid[3][3])
 {
 	int i, j;
@@ -15,9 +19,14 @@ void print_grid(int grid[3][3])
 	}
 }
 
+/**
+ * sandpiles_sum - Computes the sum of two sandpiles
+ * @grid1: The first grid
+ * @grid2: The second grid
+ */
 void sandpiles_sum(int grid1[3][3], int grid2[3][3])
 {
-	int i, j, k, l, sum, toppling;
+	int i, j, sum, toppling;
 
 	for (i = 0; i < 3; i++)
 	{
@@ -32,6 +41,7 @@ void sandpiles_sum(int grid1[3][3], int grid2[3][3])
 	{
 		toppling = 0;
 		int temp[3][3] = {{0, 0, 0}, {0, 0, 0}, {0, 0, 0}};
+
 		for (i = 0; i < 3; i++)
 		{
 			for (j = 0; j < 3; j++)
@@ -55,12 +65,15 @@ void sandpiles_sum(int grid1[3][3], int grid2[3][3])
 				}
 			}
 		}
+
 		if (toppling == 0)
 		{
 			break;
 		}
+
 		printf("=\n");
 		print_grid(temp);
+
 		for (i = 0; i < 3; i++)
 		{
 			for (j = 0; j < 3; j++)
