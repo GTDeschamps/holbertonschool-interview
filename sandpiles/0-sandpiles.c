@@ -50,14 +50,10 @@ void sandpiles_sum(int grid1[3][3], int grid2[3][3])
 				{
 					toppling++;
 					temp[i][j] = grid1[i][j] - 4;
-					if (i > 0)
-						temp[i - 1][j]++;
-					if (i < 2)
-						temp[i + 1][j]++;
-					if (j > 0)
-						temp[i][j - 1]++;
-					if (j < 2)
-						temp[i][j + 1]++;
+					if (i > 0) temp[i - 1][j]++;
+					if (i < 2) temp[i + 1][j]++;
+					if (j > 0) temp[i][j - 1]++;
+					if (j < 2) temp[i][j + 1]++;
 				}
 				else
 				{
