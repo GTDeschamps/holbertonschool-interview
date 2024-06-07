@@ -23,8 +23,9 @@ void print_grid(int grid[3][3])
 }
 
 /**
- * unstable - checks if the grid is unstable
- * return 1 if unstable, 0 if stable
+ * is_unstable- checks if the grid is unstable
+ * @grid : 3*3 grid
+ * Return 1 if unstable, else, return 0
  */
 int is_unstable(int grid[3][3])
 {
@@ -42,7 +43,10 @@ int is_unstable(int grid[3][3])
 }
 
 
-
+/**
+ * topple- Topples unstable sandpiles
+ * grid 3*3 grid
+ */
 void topple(int grid[3][3])
 {
 	int i, j;
