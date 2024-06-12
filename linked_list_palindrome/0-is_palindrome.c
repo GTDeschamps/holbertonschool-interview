@@ -9,21 +9,20 @@
  */
 listint_t *reverse_listint(listint_t **head)
 {
-    listint_t *prev = NULL;
-    listint_t *current = *head;
-    listint_t *next = NULL;
+	listint_t *prev = NULL;
+	listint_t *current = *head;
+	listint_t *next = NULL;
 
-    while (current != NULL)
-    {
-        next = current->next;
-        current->next = prev;
-        prev = current;
-        current = next;
-    }
-    *head = prev;
-    return (*head);
+	while (current != NULL)
+	{
+		next = current->next;
+		current->next = prev;
+		prev = current;
+		current = next;
+	}
+	*head = prev;
+	return (*head);
 }
-
 
 /**
  * is_palindrome - Checks if a singly linked list is a palindrome.
@@ -32,37 +31,43 @@ listint_t *reverse_listint(listint_t **head)
  */
 int is_palindrome(listint_t **head)
 {
-    if (*head == NULL || (*head)->next == NULL)
-        return (1);
+	listint_t *slow, *fast, *first_half_end, *second_half_start;
+	listint_t *first_half_iter, *second_half_iter;
+	int palindrome;
 
-    listint_t *slow = *head, *fast = *head;
-    listint_t *first_half_end = NULL, *second_half_start = NULL;
+	if (*head == NULL || (*head)->next == NULL)
+		return (1);
 
-    while (fast != NULL && fast->next != NULL)
-    {
-        fast = fast->next->next;
-        slow = slow->next;
-    }
+	slow = *head;
+	fast = *head;
+	first_half_end = NULL;
+	second_half_start = NULL;
 
-    first_half_end = slow;
-    second_half_start = reverse_listint(&first_half_end);
+	while (fast != NULL && fast->next != NULL)
+	{
+		fast = fast->next->next;
+		slow = slow->next;
+	}
 
-    listint_t *first_half_iter = *head;
-    listint_t *second_half_iter = second_half_start;
-    int palindrome = 1;
+	first_half_end = slow;
+	second_half_start = reverse_listint(&first_half_end);
 
-    while (second_half_iter != NULL)
-    {
-        if (first_half_iter->n != second_half_iter->n)
-        {
-            palindrome = 0;
-            break;
-        }
-        first_half_iter = first_half_iter->next;
-        second_half_iter = second_half_iter->next;
-    }
+	first_half_iter = *head;
+	second_half_iter = second_half_start;
+	palindrome = 1;
 
-    reverse_listint(&second_half_start);
+	while (second_half_iter != NULL)
+	{
+		if (first_half_iter->n != second_half_iter->n)
+		{
+			palindrome = 0;
+			break;
+		}
+		first_half_iter = first_half_iter->next;
+		second_half_iter = second_half_iter->next;
+	}
 
-    return (palindrome);
+	reverse_listint(&second_half_start);
+
+	return (palindrome);
 }
