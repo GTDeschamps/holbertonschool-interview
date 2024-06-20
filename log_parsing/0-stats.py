@@ -1,5 +1,4 @@
 #!/usr/bin/python3
-# -*- coding: utf-8 -*-
 
 """
 Parses log file input from stdin
@@ -16,6 +15,11 @@ it prints the final total file size and status code counts.
 
 import sys
 
+in_data = sys.stdin.read()
+lines = in_data.splitlines()
+
+# Initialize line count
+line_count = 0
 # Initialize total file size and status code counts
 total_size = 0
 status_codes = {
@@ -29,10 +33,8 @@ status_codes = {
     500: 0,
 }
 
-# Initialize line count
-line_count = 0
-
 def print_status():
+
     # Print final status on interrupt
     print("File size:", total_size)
     for code in sorted(status_codes.keys()):
@@ -40,21 +42,22 @@ def print_status():
             print(code, ":", status_codes[code])
 
     # Iterate over input lines from stdin
-try:
-    for line in sys.stdin:
+for line in lines:
+    try:
         line_count += 1
         # Parse line using split function
-        parts = line.split()
-        total_size = int(parts[- 1])
+        parts = line.split(" ")
+        total_size = int(parts[-1])
 
-        if parts[-2] in status_codes:
-            status_codes[int(parts[- 2])] += 1
+        if int(parts[-2]) in status_codes:
+            status_codes[int(parts[-2])] += 1
 
         line_count += 1
 
         if line_count % 10 == 0:
             print_status()
 
-except Exception as e:
-    print_status()
+    except Exception as e:
+        continue
 
+print_status()
