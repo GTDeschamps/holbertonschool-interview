@@ -37,15 +37,14 @@ try:
     # Iterate over input lines from stdin
     for line in sys.stdin:
         line_count += 1
-        # Parse line using regular expression
-        match = re.match(
-            r'^(\S+) - \[(.+)\] "(GET /projects/260 HTTP/1.1)" (\d{3}) (\d+)$',
-            line)
-        if match:
-            # Extract status code and file size from match
-            status_code = int(match.group(3))
-            file_size = int(match.group(4))
-            # Update total file size and status code counts
+        # Parse line using split function
+        parts = line.split()
+        if len(parts) >= 9 and \
+            parts[5] == '"GET' and \
+            parts[6] == '/projects/260' and \
+            parts[7] == 'HTTP/1.1"':
+            status_code = int(parts[8])
+            file_size = int(parts[9])
             total_size += file_size
             status_codes[status_code] += 1
         else:
