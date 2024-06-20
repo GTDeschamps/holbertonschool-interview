@@ -15,7 +15,6 @@ it prints the final total file size and status code counts.
 """
 
 import sys
-import re
 
 # Initialize total file size and status code counts
 total_size = 0
@@ -33,34 +32,29 @@ status_codes = {
 # Initialize line count
 line_count = 0
 
-try:
+def print_status():
+    # Print final status on interrupt
+    print("File size:", total_size)
+    for code in sorted(status_codes.keys()):
+        if status_codes[code] > 0:
+            print(code, ":", status_codes[code])
+
     # Iterate over input lines from stdin
+try:
     for line in sys.stdin:
         line_count += 1
         # Parse line using split function
         parts = line.split()
-        if len(parts) >= 9 and \
-            parts[5] == '"GET' and \
-            parts[6] == '/projects/260' and \
-            parts[7] == 'HTTP/1.1"':
-            status_code = int(parts[8])
-            file_size = int(parts[9])
-            total_size += file_size
-            status_codes[status_code] += 1
-        else:
-            # Skip invalid lines
-            continue
+        total_size = int(parts[- 1])
 
-        # Print status every 10 lines
+        if parts[-2] in status_codes:
+            status_codes[int(parts[- 2])] += 1
+
+        line_count += 1
+
         if line_count % 10 == 0:
-            print("Total file size: File size:", total_size)
-            for code in sorted(status_codes.keys()):
-                if status_codes[code] > 0:
-                    print(code, ":", status_codes[code])
+            print_status()
 
-except KeyboardInterrupt:
-    # Print final status on interrupt
-    print("Total file size: File size:", total_size)
-    for code in sorted(status_codes.keys()):
-        if status_codes[code] > 0:
-            print(code, ":", status_codes[code])
+except Exception as e:
+    print_status()
+
