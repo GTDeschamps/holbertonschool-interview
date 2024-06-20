@@ -48,7 +48,7 @@ for line in lines:
     try:
         # Parse line using split function
         parts = line.split(" ")
-        total_size = int(parts[-1])
+        total_size += int(parts[-1])
 
         if int(parts[-2]) in status_codes:
             status_codes[int(parts[-2])] += 1
