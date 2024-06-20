@@ -2,14 +2,16 @@
 # -*- coding: utf-8 -*-
 
 """
-Parses log file input from stdin and calculates total file size and status code counts.
+Parses log file input from stdin
+and calculates total file size and status code counts.
 
-The script reads input from stdin, parses each line using a regular expression, and
-updates the total file size and status code counts accordingly. It prints the
-current total file size and status code counts every 10 lines.
+The script reads input from stdin,
+parses each line using a regular expression, and
+updates the total file size and status code counts accordingly.
+It prints the current total file size and status code counts every 10 lines.
 
-If the script is interrupted with a KeyboardInterrupt (e.g., Ctrl+C), it prints
-the final total file size and status code counts.
+If the script is interrupted with a KeyboardInterrupt (e.g., Ctrl+C),
+it prints the final total file size and status code counts.
 """
 
 import sys
@@ -36,7 +38,9 @@ try:
     for line in sys.stdin:
         line_count += 1
         # Parse line using regular expression
-        match = re.match(r'^(\S+) - \[(.+)\] "(GET /projects/260 HTTP/1.1)" (\d{3}) (\d+)$', line)
+        match = re.match(
+            r'^(\S+) - \[(.+)\] "(GET /projects/260 HTTP/1.1)" (\d{3}) (\d+)$',
+            line)
         if match:
             # Extract status code and file size from match
             status_code = int(match.group(3))
