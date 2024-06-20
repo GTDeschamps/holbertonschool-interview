@@ -33,6 +33,7 @@ status_codes = {
     500: 0,
 }
 
+
 def print_status():
 
     # Print final status on interrupt
