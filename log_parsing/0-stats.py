@@ -39,14 +39,13 @@ def print_status():
     # Print final status on interrupt
     print("File size:", total_size)
     for code in sorted(status_codes.keys()):
-        if status_codes[code] > 0:
+        if status_codes[code] != 0:
             print(code, end="")
             print(":", status_codes[code])
 
     # Iterate over input lines from stdin
 for line in lines:
     try:
-        line_count += 1
         # Parse line using split function
         parts = line.split(" ")
         total_size = int(parts[-1])
