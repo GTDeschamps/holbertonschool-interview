@@ -40,7 +40,8 @@ def print_status():
     print("File size:", total_size)
     for code in sorted(status_codes.keys()):
         if status_codes[code] > 0:
-            print(code, ":", status_codes[code])
+            print(code,end="")
+            print(":", status_codes[code])
 
     # Iterate over input lines from stdin
 for line in lines:
