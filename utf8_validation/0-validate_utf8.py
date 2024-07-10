@@ -4,7 +4,7 @@ Definition of validation UTF8
 """
 
 
-def valid_utf8(data):
+def validUTF8(data):
     """
     Check if a given data set represents a valid UTF-8 encoding.
 
@@ -17,10 +17,11 @@ def valid_utf8(data):
     num_bytes = 0  # Counter to track the number of bytes in a UTF-8 character
 
     for byte in data:
-        byte = bin(byte)[2:].zfill(8)  # Convert byte to binary and pad with zeros to 8 bits
+        byte = bin(byte)[2:].zfill(8)
+        # Convert byte to binary and pad with zeros to 8 bits
 
         if num_bytes == 0:
-            # Check the first few bits to determine the number of bytes in the UTF-8 character
+            # Check the first few bits to determine the number of bytes
             if byte.startswith('0'):
                 continue
             elif byte.startswith('110'):
