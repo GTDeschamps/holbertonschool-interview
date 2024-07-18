@@ -14,13 +14,14 @@
  */
 int slide_line(int *line, size_t size, int direction)
 {
-    int i, j, temp;
 
     if (direction != SLIDE_LEFT && direction != SLIDE_RIGHT)
     {
         /* Failure: invalid direction */
         return 0;
     }
+
+    int i, j, temp;
 
     if (direction == SLIDE_LEFT)
     {
@@ -71,7 +72,7 @@ int slide_line(int *line, size_t size, int direction)
         /* Remove zeros from the right */
         i = (int)size - 1;
         j = (int)size - 1;
-        while (j > 0)
+        while (j >= 0)
         {
             if (line[j] != 0)
             {
@@ -98,7 +99,7 @@ int slide_line(int *line, size_t size, int direction)
         /* Remove zeros from the right again */
         i = (int)size - 1;
         j = (int)size - 1;
-        while (j > 0)
+        while (j >= 0)
         {
             if (line[j] != 0)
             {
