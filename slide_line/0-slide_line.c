@@ -14,14 +14,13 @@
  */
 int slide_line(int *line, size_t size, int direction)
 {
+	int i, j, temp;
 
 	if (direction != SLIDE_LEFT && direction != SLIDE_RIGHT)
 	{
 		/* Failure: invalid direction */
 		return 0;
 	}
-
-	int i, j, temp;
 
 	if (direction == SLIDE_LEFT)
 	{
