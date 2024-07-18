@@ -3,9 +3,18 @@
 
 #include "slide_line.h"
 
+/**
+ * @brief Slides and merges an array of integers to the left or right.
+ *
+ * @param line The array of integers to be slided and merged.
+ * @param size The number of elements in the array.
+ * @param direction The direction of the slide and merge operation. Can be SLIDE_LEFT or SLIDE_RIGHT.
+ *
+ * @return 1 upon success, 0 upon failure.
+ */
 int slide_line(int *line, size_t size, int direction) {
     if (direction != SLIDE_LEFT && direction != SLIDE_RIGHT) {
-        return 0;
+        return 0; // Failure: invalid direction
     }
 
     size_t i, j;
@@ -85,5 +94,5 @@ int slide_line(int *line, size_t size, int direction) {
         }
     }
 
-    return 1;
+    return 1; // Success
 }
