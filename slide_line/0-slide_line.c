@@ -20,7 +20,7 @@ int slide_line(int *line, size_t size, int direction)
 		return 0;
 	}
 
-	size_t i, j;
+	int i, j;
 	int temp;
 
 	if (direction == SLIDE_LEFT)
