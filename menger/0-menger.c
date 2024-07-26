@@ -7,19 +7,21 @@
  */
 void menger(int level)
 {
+    int size = pow(3, level);
+    int i, j, x, y;
+
     if (level < 0)
     {
         return;
     }
 
-    int size = pow(3, level);
 
-    for (int i = 0; i < size; i++)
+    for (i = 0; i < size; i++)
     {
-        for (int j = 0; j < size; j++)
+        for (j = 0; j < size; j++)
         {
-            int x = i;
-            int y = j;
+            x = i;
+            y = j;
             while (x > 0 || y > 0)
             {
                 if (x % 3 == 1 && y % 3 == 1)
