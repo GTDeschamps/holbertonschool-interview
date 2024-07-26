@@ -4,7 +4,8 @@
 #include <stdio.h>
 #include <math.h>
 
-void drawSquare(int level, int row, int col);
+/* Header guard for menger.h */
+
 void menger(int level);
 
-#endif  // MENGER_H
+#endif /*MENGER_H*/
