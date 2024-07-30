@@ -3,6 +3,7 @@
 
 import sys
 
+
 def is_valid(board, row, col, n):
     for i in range(row):
         if board[i][1] == col or \
@@ -10,6 +11,7 @@ def is_valid(board, row, col, n):
            board[i][1] + i == col + row:
             return False
     return True
+
 
 def solve_n_queens(n, row=0, board=[]):
     if row == n:
