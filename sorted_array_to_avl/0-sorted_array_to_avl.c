@@ -3,42 +3,45 @@
 #include "binary_trees.h"
 
 
-binary_tree_t *binary_tree_node(binary_tree_t *parent, int value)
+avl_t *create_node(avl_t *parent, int value)
 {
-	binary_tree_t *new_node = malloc(sizeof(binary_tree_t));
-	if (new_node == NULL)
-	return (NULL);
-	new_node->n = value;
-	new_node->parent = parent;
-	new_node->left = NULL;
-	new_node->right = NULL;
-	return (new_node);
+	avl_t *node;
+
+	node = malloc(sizeof(avl_t));
+	if (!node)
+		return (NULL);
+
+	node->n = value;
+	node->parent = parent;
+	node->left = NULL;
+	node->right = NULL;
+
+	return (node);
 }
 
-binary_tree_t *sorted_array_to_avl_helper(int *array, int start, int end,binary_tree_t *parent)
+avl_t *array_to_avl(int *array, int start, int end, avl_t *parent)
 {
-    if (start > end) {
-        return NULL;
-    }
+	int mid;
+	avl_t *root;
 
-    int mid = (start + end) / 2;
+	if (start > end)
+		return (NULL);
 
-    binary_tree_t *root = binary_tree_node(parent, array[mid]);
+	mid = (start + end) / 2;
+	root = create_node(parent, array[mid]);
+	if (!root)
+		return (NULL);
 
-    root->left = sorted_array_to_avl_helper(array, start, mid - 1, root);
-    root->right = sorted_array_to_avl_helper(array, mid + 1, end, root);
+	root->left = array_to_avl(array, start, mid - 1, root);
+	root->right = array_to_avl(array, mid + 1, end, root);
 
-    return root;
+	return (root);
 }
 
-// Function to build an AVL tree from a sorted array
-binary_tree_t *sorted_array_to_avl(int *array, size_t size)
+avl_t *sorted_array_to_avl(int *array, size_t size)
 {
-    binary_tree_t *tree = malloc(sizeof(binary_tree_t));
-    if (!tree) {
-        return NULL;
-    }
-    tree = sorted_array_to_avl_helper(array, 0, size - 1, NULL);
-    return tree;
-}
+	if (!array || size == 0)
+		return (NULL);
 
+	return (array_to_avl(array, 0, size - 1, NULL));
+}
