@@ -30,7 +30,7 @@ struct avl_tree_s
     binary_tree_t *root;
 };
 
-avl_t *sorted_array_to_avl(int *array, size_t size);
+binary_tree_t *sorted_array_to_avl(int *array, size_t size);
 void binary_tree_print(const binary_tree_t *tree);
 
 #endif
