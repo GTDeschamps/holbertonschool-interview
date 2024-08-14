@@ -20,10 +20,10 @@
  */
 typedef struct skiplist_s
 {
-    int n;
-    size_t index;
-    struct skiplist_s *next;
-    struct skiplist_s *express;
+	int n;
+	size_t index;
+	struct skiplist_s *next;
+	struct skiplist_s *express;
 } skiplist_t;
 
 skiplist_t *create_skiplist(int *array, size_t size);
@@ -31,4 +31,4 @@ void print_skiplist(const skiplist_t *list);
 void free_skiplist(skiplist_t *list);
 skiplist_t *linear_skip(skiplist_t *head, int value);
 
-#endif /* _SEARCH_H_ */
+#endif
