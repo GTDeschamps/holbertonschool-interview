@@ -1,24 +1,43 @@
-/**
- * @file skiplist.c
- * @brief Implementation of a skip list data structure
- */
-
-#include <stdio.h>
-#include <stdlib.h>
+#include<stdio.h>
+#include<stdlib.h>
 #include <search.h>
-#include <math.h>
+
+typedef struct skiplist_node
+{
+    int n;
+    size_t index;
+    struct skiplist_node *next;
+    struct skiplist_node *express;
+} skiplist_t;
 
 /**
- * @struct skiplist_s
- * @brief Node structure for the skip list
+ * search - search one by one
+ *
+ * @list: list of nodes
+ * @index2: value for the print
+ * @value: value to search
+ *
+ * Return: null or node with the value
  */
-typedef struct skiplist_s
+skiplist_t *search(skiplist_t *list, int index2, int value)
 {
-    int n; /**< Value stored in the node */
-    int index; /**< Index of the node in the list */
-    struct skiplist_s *next; /**< Pointer to the next node in the list */
-    struct skiplist_s *express; /**< Pointer to the express lane node */
-} skiplist_t;
+    skiplist_t *current = list;
+
+    printf("Value found between indexes [%zu] and [%d]\n",
+           current->index, index2);
+    while (current != NULL)
+    {
+        printf("Value checked at index [%zu] = [%d]\n",
+               current->index, current->n);
+        if (current->n < value)
+            current = current->next;
+        else if (current->n == value)
+            return (current);
+        else
+            return (NULL);
+    }
+    return (NULL);
+}
 
 /**
  * @brief Searches for a value in the skip list using linear search
@@ -42,7 +61,7 @@ skiplist_t *linear_skip(skiplist_t *list, int value)
     current = list;
     while (current != NULL)
     {
-        printf("Value checked at index [%d] = [%d]\n", current->index, current->n);
+        printf("Value checked at index [%zu] = [%d]\n", current->index, current->n);
         if (current->n == value)
             return current;
         if (current->express != NULL && current->express->n <= value)
