@@ -47,28 +47,21 @@ skiplist_t *search(skiplist_t *list, int index2, int value)
  */
 skiplist_t *linear_skip(skiplist_t *list, int value)
 {
-    if (list == NULL)
-        return NULL;
+    skiplist_t *current = list, *current2;
 
-    int size = 0;
-    skiplist_t *current = list;
-    while (current != NULL)
-    {
-        size++;
-        current = current->next;
-    }
-
-    current = list;
-    while (current != NULL)
-    {
-        printf("Value checked at index [%zu] = [%d]\n", current->index, current->n);
-        if (current->n == value)
-            return current;
-        if (current->express != NULL && current->express->n <= value)
-            current = current->express;
-        else
-            current = current->next;
-    }
-
-    return NULL;
+	if (list == NULL)
+		return (NULL);
+	while (current->express != NULL)
+	{
+		printf("Value checked at index [%zu] = [%d]\n",
+				current->express->index, current->express->n);
+		if (current->express->n < value)
+			current = current->express;
+		else
+			return (search(current, current->express->index, value));
+	}
+	current2 = current;
+	while (current2->next != NULL)
+		current2 = current2->next;
+	return (search(current, current2->index, value));
 }
