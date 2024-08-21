@@ -17,7 +17,6 @@ function fetchCharacters(movieId) {
 
         // Check if the movie exists
         if (body && body.title) {
-            console.log(`Characters from "${body.title}":`);
             body.characters.forEach(characterUrl => {
                 // Fetch each character's details
                 request(characterUrl, { json: true }, (err, res, characterBody) => {
