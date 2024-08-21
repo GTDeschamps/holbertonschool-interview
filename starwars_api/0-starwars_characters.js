@@ -17,19 +17,24 @@ function fetchCharacters(movieId) {
 
         // Check if the movie exists
         if (body && body.title) {
-            body.characters.forEach(characterUrl => {
-                // Fetch each character's details
-                request(characterUrl, { json: true }, (err, res, characterBody) => {
-                    if (err) {
-                        return console.error('Error fetching character data:', err);
-                    }
-
-                    // Print each character's name
-                    if (characterBody && characterBody.name) {
-                        console.log(characterBody.name);
-                    }
+            const characterUrls = body.characters;
+            const characterPromises = characterUrls.map(characterUrl => {
+                return new Promise((resolve, reject) => {
+                    request(characterUrl, { json: true }, (err, res, characterBody) => {
+                        if (err) {
+                            reject(err);
+                        } else {
+                            resolve(characterBody.name);
+                        }
+                    });
                 });
             });
+
+            Promise.all(characterPromises)
+                .then(characterNames => {
+                    characterNames.forEach(name => console.log(name));
+                })
+                .catch(err => console.error('Error fetching character data:', err));
         } else {
             console.log('Movie not found or invalid Movie ID.');
         }
