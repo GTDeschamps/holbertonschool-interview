@@ -6,7 +6,7 @@ const request = require('request');
 const movieId = process.argv[2];
 
 // Function to fetch characters from the specified movie
-function fetchCharacters(movieId) {
+function fetchCharacters (movieId) {
   // URL for the SWAPI films endpoint
   const url = `https://swapi.dev/api/films/${movieId}/`;
 
