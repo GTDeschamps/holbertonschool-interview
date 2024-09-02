@@ -3,9 +3,9 @@
 #include "sort.h"
 
 void sift_down(int *array, size_t size, size_t root) {
-    size_t largest = root; // Initialize largest as root
-    size_t left_child = 2 * root + 1; // left child index
-    size_t right_child = 2 * root + 2; // right child index
+    size_t largest = root;
+    size_t left_child = 2 * root + 1;
+    size_t right_child = 2 * root + 2;
 
     // Check if left child exists and is greater than root
     if (left_child < size && array[left_child] > array[largest]) {
@@ -23,12 +23,6 @@ void sift_down(int *array, size_t size, size_t root) {
         int temp = array[root];
         array[root] = array[largest];
         array[largest] = temp;
-
-        // Print the array after swap
-        for (size_t i = 0; i < size; i++) {
-            printf("%d ", array[i]);
-        }
-        printf("\n");
 
         // Recursively sift down the affected subtree
         sift_down(array, size, largest);
