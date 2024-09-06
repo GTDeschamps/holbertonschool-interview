@@ -2,25 +2,33 @@
 #include <stdlib.h>
 #include "sort.h"
 
+/**
+ * sift_down - Sifts down the heap to maintain the heap property
+ * @array: The array to sift down
+ * @size: The size of the heap
+ * @root: The root of the subtree to sift down
+ * @full_size: The full size of the array
+ */
+
 void sift_down(int *array, size_t size, size_t root, size_t full_size)
 {
     size_t largest = root;
     size_t left_child = 2 * root + 1;
     size_t right_child = 2 * root + 2;
 
-    // Check if left child exists and is greater than root
+    /* Check if left child exists and is greater than root */
     if (left_child < size && array[left_child] > array[largest])
     {
         largest = left_child;
     }
 
-    // Check if right child exists and is greater than the largest so far
+    /* Check if right child exists and is greater than the largest so far */
     if (right_child < size && array[right_child] > array[largest])
     {
         largest = right_child;
     }
 
-    // If largest is not root, swap with root and continue sifting down
+     /* If largest is not root, swap with root and continue sifting down */
     if (largest != root)
     {
         // Swap
@@ -35,15 +43,20 @@ void sift_down(int *array, size_t size, size_t root, size_t full_size)
     }
 }
 
+/**
+ * heap_sort - Sorts an array using the heap sort algorithm
+ * @array: The array to sort
+ * @size: The size of the array
+ */
 void heap_sort(int *array, size_t size)
 {
-    // Build the heap (rearrange the array)
+    /* Build the heap (rearrange the array) */
     for (size_t i = size / 2; i > 0; i--)
     {
         sift_down(array, size, i - 1, size);
     }
 
-    // One by one extract elements from the heap
+    /* One by one extract elements from the heap */
     for (size_t i = size - 1; i > 0; i--)
     {
         int temp = array[0];
