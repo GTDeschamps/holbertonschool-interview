@@ -31,23 +31,22 @@ void sift_down(int *array, size_t size, size_t root) {
 
 void heap_sort(int *array, size_t size) {
     // Build the heap (rearrange the array)
-    for (size_t i = size / 2 - 1; i != (size_t)-1; i--) {
-        sift_down(array, size, i);
+    for (size_t i = size / 2; i > 0; i--) {
+        sift_down(array, size, i - 1);
     }
 
     // One by one extract elements from the heap
     for (size_t i = size - 1; i > 0; i--) {
-        // Move current root to end
-        int temp = array[0];
-        array[0] = array[i];
-        array[i] = temp;
-
         // Print the array after swap
         for (size_t j = 0; j < size; j++) {
             printf("%d ", array[j]);
         }
         printf("\n");
 
+        // Move current root to end
+        int temp = array[0];
+        array[0] = array[i];
+        array[i] = temp;
         // Call sift down on the reduced heap
         sift_down(array, i, 0);
     }
