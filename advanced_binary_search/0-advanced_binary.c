@@ -36,10 +36,10 @@ int recursive_search(int *array, size_t start, size_t end, int value)
 {
 	if (start > end)
 	{
-		return -1; /* Value not found */
+		return (-1); /* Value not found */
 	}
 
-	print_subarray (array, start, end);
+	print_subarray(array, start, end);
 
 	size_t mid = start + (end - start) / 2;
 
@@ -48,20 +48,23 @@ int recursive_search(int *array, size_t start, size_t end, int value)
 		/* Search in the left half to find the first occurrence */
 		if (mid == start || array[mid - 1] != value)
 		{
-			return mid; /* Found the first occurrence */
+			return (mid); /* Found the first occurrence */
 		}
 		else
 		{
-			return recursive_search(array, start, mid, value); /* Search in the left half */
+			return recursive_search(array, start, mid, value);
+			/* Search in the left half */
 		}
 	}
 	else if (array[mid] < value)
 	{
-		return recursive_search(array, mid + 1, end, value); /* Search in the right half */
+		return recursive_search(array, mid + 1, end, value);
+		/* Search in the right half */
 	}
 	else
 	{
-		return recursive_search(array, start, mid, value); /* Search in the left half */
+		return recursive_search(array, start, mid, value);
+		/* Search in the left half */
 	}
 }
 
@@ -79,7 +82,7 @@ int advanced_binary(int *array, size_t size, int value)
 {
 	if (array == NULL || size == 0)
 	{
-		return -1; /* Invalid input */
+		return (-1); /* Invalid input */
 	}
 
 	return recursive_search(array, 0, size - 1, value);
