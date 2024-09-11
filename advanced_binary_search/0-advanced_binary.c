@@ -52,18 +52,18 @@ int recursive_search(int *array, size_t start, size_t end, int value)
 		}
 		else
 		{
-			return recursive_search(array, start, mid, value);
+			return (recursive_search(array, start, mid, value));
 			/* Search in the left half */
 		}
 	}
 	else if (array[mid] < value)
 	{
-		return recursive_search(array, mid + 1, end, value);
+		return (recursive_search(array, mid + 1, end, value));
 		/* Search in the right half */
 	}
 	else
 	{
-		return recursive_search(array, start, mid, value);
+		return (recursive_search(array, start, mid, value));
 		/* Search in the left half */
 	}
 }
@@ -85,5 +85,5 @@ int advanced_binary(int *array, size_t size, int value)
 		return (-1); /* Invalid input */
 	}
 
-	return recursive_search(array, 0, size - 1, value);
+	return (recursive_search(array, 0, size - 1, value));
 }
