@@ -15,7 +15,6 @@ def count_words(subreddit, word_list, after=None, count={}):
     parse the title of all hot articles,
     and print a sorted count of given keywords.
     '''
-    print("function is recursive")
     headers = {
         'User-Agent': 'your_user_agent'
     }
@@ -42,3 +41,5 @@ def count_words(subreddit, word_list, after=None, count={}):
         for word, freq in sorted(count.items(), key=lambda x: (-x[1], x[0])):
             if freq > 0:
                 print(f"{word}: {freq}")
+                
+    return count
