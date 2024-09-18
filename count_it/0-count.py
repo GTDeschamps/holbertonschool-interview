@@ -15,6 +15,7 @@ def count_words(subreddit, word_list, after=None, count={}):
     parse the title of all hot articles,
     and print a sorted count of given keywords.
     '''
+    print("function is recursive")
     headers = {
         'User-Agent': 'your_user_agent'
     }
