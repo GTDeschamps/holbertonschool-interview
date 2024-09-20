@@ -24,8 +24,11 @@ def count_words(subreddit, word_list, after=None, count={}):
     else:
         url = f'https://oauth.reddit.com/r/{subreddit}/hot/.json?limit=100&after={after}'
 
-    response = requests.get(url, headers=headers)
-    data = response.json()
+    try:
+        response = requests.get(url, headers=headers)
+        data = response.json()
+    except:
+        return count
 
     for post in data['data']['children']:
         title = post['data']['title'].lower()
@@ -41,5 +44,5 @@ def count_words(subreddit, word_list, after=None, count={}):
         for word, freq in sorted(count.items(), key=lambda x: (-x[1], x[0])):
             if freq > 0:
                 print(f"{word}: {freq}")
-                
+
     return count
