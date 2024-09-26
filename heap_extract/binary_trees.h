@@ -9,15 +9,10 @@ typedef struct binary_tree_s
     struct binary_tree_s *right;
 } binary_tree_t;
 
-typedef struct heap_s
-{
-    int n;
-    struct heap_s *parent;
-    struct heap_s *left;
-    struct heap_s *right;
-} heap_t;
+typedef struct binary_tree_s heap_t;
 
-void binary_tree_print(const binary_tree_t *tree);
+
+void binary_tree_print(const binary_tree_t *);
 int heap_extract(heap_t **root);
 
 #endif /* BINARY_TREES_H */
