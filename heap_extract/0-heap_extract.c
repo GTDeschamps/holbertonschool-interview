@@ -2,7 +2,6 @@
 #include <stdio.h>
 #include "binary_trees.h"
 
-
 /**
  * swap_values - Swaps the values of two heap nodes
  * @a: first heap node
