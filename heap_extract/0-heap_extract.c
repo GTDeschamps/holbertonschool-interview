@@ -16,9 +16,8 @@ void swap_values(heap_t *a, heap_t *b)
 }
 
 /**
- * get_last_node - Gets the last level-order node of the heap
+ * getLastNode - Gets the last level-order node of the heap
  * @root: pointer to the root node of the heap
- * @size: size of the heap
  * Return: pointer to the last node
  */
 heap_t *getLastNode(heap_t *root)
