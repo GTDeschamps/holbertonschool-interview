@@ -18,6 +18,6 @@ typedef struct heap_s
 } heap_t;
 
 void binary_tree_print(const binary_tree_t *tree);
-void _binary_tree_delete(binary_tree_t *tree);
+int heap_extract(heap_t **root);
 
 #endif /* BINARY_TREES_H */
