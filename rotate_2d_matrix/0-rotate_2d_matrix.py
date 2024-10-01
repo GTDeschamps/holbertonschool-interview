@@ -1,17 +1,16 @@
 #!/usr/bin/python3
-
-def rotate_2d_matrix(matrix):
-    """
-    Rotates an n x n 2D matrix 90 degrees clockwise in place.
+"""Rotates an n x n 2D matrix 90 degrees clockwise in place.
 
     Args:
-        matrix (list of list of int): The n x n matrix to be rotated.
-                                    The matrix will be modified in place,
-                                    and it is assumed to be non-empty.
+        matrix (list of list of int):
+        The n x n matrix to be rotated.
+        The matrix will be modified in place,and it is assumed to be non-empty.
 
     Returns:
-        None
-    """
+        None"""
+
+
+def rotate_2d_matrix(matrix):
     n = len(matrix)
 
     # Transpose the matrix (swap matrix[i][j] with matrix[j][i])
