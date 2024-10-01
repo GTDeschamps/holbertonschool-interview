@@ -4,7 +4,7 @@
     Args:
         matrix (list of list of int):
         The n x n matrix to be rotated.
-        The matrix will be modified in place,and it is assumed to be non-empty.
+        The matrix will be modified in place,and it is assumed to be non-empty
 
     Returns:
         None"""
@@ -21,4 +21,3 @@ def rotate_2d_matrix(matrix):
     # Reverse each row
     for i in range(n):
         matrix[i].reverse()
-
