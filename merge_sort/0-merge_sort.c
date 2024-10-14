@@ -2,6 +2,20 @@
 #include <stdlib.h>
 #include "sort.h"
 
+/**
+ * print_sub_array - Prints part of an array (from left to right)
+ * with a comma-separated format.
+ */
+void print_sub_array(const int *array, size_t left, size_t right)
+{
+    for (size_t i = left; i <= right; i++)
+    {
+        if (i > left)
+            printf(", ");
+        printf("%d", array[i]);
+    }
+    printf("\n");
+}
 
 /**
  * merge - Merges two sub-arrays of array[].
@@ -11,6 +25,12 @@
 void merge(int *array, int *temp, size_t left, size_t mid, size_t right)
 {
     size_t i = left, j = mid + 1, k = left;
+
+    printf("Merging...\n");
+    printf("[left]: ");
+    print_sub_array(array, left, mid);
+    printf("[right]: ");
+    print_sub_array(array, mid + 1, right);
 
     while (i <= mid && j <= right)
     {
