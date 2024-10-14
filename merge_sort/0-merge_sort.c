@@ -48,6 +48,9 @@ void merge(int *array, int *temp, size_t left, size_t mid, size_t right)
 
     for (i = left; i <= right; i++)
         array[i] = temp[i];
+
+    printf("[Done]: ");
+    print_sub_array(array, left, right);
 }
 
 /**
@@ -68,12 +71,6 @@ void merge_sort_rec(int *array, int *temp, size_t left, size_t right)
 
     // Merge the sorted parts
     merge(array, temp, left, mid, right);
-
-    // Print the array after merging for visualization
-    printf("Merged array: ");
-    for (size_t i = left; i <= right; i++)
-        printf("%d ", array[i]);
-    printf("\n");
 }
 
 /**
