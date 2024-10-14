@@ -3,73 +3,72 @@
 #include "sort.h"
 
 
-void merge(int *array, size_t left, size_t mid, size_t right)
+/**
+ * merge - Merges two sub-arrays of array[].
+ * First sub-array is arr[left..mid]
+ * Second sub-array is arr[mid+1..right]
+ */
+void merge(int *array, int *temp, size_t left, size_t mid, size_t right)
 {
-	size_t i, j, k;
-	size_t n1 = mid - left + 1;
-	size_t n2 = right - mid;
+    size_t i = left, j = mid + 1, k = left;
 
-	int *L = malloc(sizeof(int) * n1);
-	int *R = malloc(sizeof(int) * n2);
+    while (i <= mid && j <= right)
+    {
+        if (array[i] <= array[j])
+            temp[k++] = array[i++];
+        else
+            temp[k++] = array[j++];
+    }
 
-	for (i = 0; i < n1; i++)
-		L[i] = array[left + i];
-	for (j = 0; j < n2; j++)
-		R[j] = array[mid + 1 + j];
+    while (i <= mid)
+        temp[k++] = array[i++];
 
-	i = 0;
-	j = 0;
-	k = left;
+    while (j <= right)
+        temp[k++] = array[j++];
 
-	while (i < n1 && j < n2)
-	{
-		if (L[i] <= R[j])
-		{
-			array[k] = L[i];
-			i++;
-		}
-		else
-		{
-			array[k] = R[j];
-			j++;
-		}
-		k++;
-	}
-
-	while (i < n1)
-	{
-		array[k] = L[i];
-		i++;
-		k++;
-	}
-
-	while (j < n2)
-	{
-		array[k] = R[j];
-		j++;
-		k++;
-	}
-
-	free(L);
-	free(R);
+    for (i = left; i <= right; i++)
+        array[i] = temp[i];
 }
 
 /**
- * merge_sort - Sorts an array of integers in ascending order using
- * the Merge Sort algorithm.
- * @array: The array to be sorted.
- * @size: The size of the array.
+ * merge_sort_rec - Recursively divides and sorts the array using merge sort.
+ */
+void merge_sort_rec(int *array, int *temp, size_t left, size_t right)
+{
+    if (left >= right)
+        return;
+
+    size_t mid = left + (right - left) / 2;
+
+    // Sort the left part
+    merge_sort_rec(array, temp, left, mid);
+
+    // Sort the right part
+    merge_sort_rec(array, temp, mid + 1, right);
+
+    // Merge the sorted parts
+    merge(array, temp, left, mid, right);
+
+    // Print the array after merging for visualization
+    printf("Merged array: ");
+    for (size_t i = left; i <= right; i++)
+        printf("%d ", array[i]);
+    printf("\n");
+}
+
+/**
+ * merge_sort - The top-level function that starts merge sort.
  */
 void merge_sort(int *array, size_t size)
 {
-	size_t mid;
+    if (size < 2)
+        return;
 
-	if (size < 2)
-		return;
+    int *temp = (int *)malloc(size * sizeof(int));
+    if (!temp)
+        return;
 
-	mid = size / 2;
+    merge_sort_rec(array, temp, 0, size - 1);
 
-	merge_sort(array, mid);
-	merge_sort(array + mid, size - mid);
-	merge(array, 0, mid - 1, size - 1);
+    free(temp);
 }
