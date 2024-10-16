@@ -54,6 +54,23 @@ void merge(int *array, int *temp, size_t left, size_t mid, size_t right)
 }
 
 /**
+ * merge_sort - The top-level function that starts merge sort.
+ */
+void merge_sort(int *array, size_t size)
+{
+    if (size < 2)
+        return;
+
+    int *temp = (int *)malloc(size * sizeof(int));
+    if (!temp)
+        return;
+
+    merge_sort_rec(array, temp, 0, size - 1);
+
+    free(temp);
+}
+
+/**
  * merge_sort_rec - Recursively divides and sorts the array using merge sort.
  */
 void merge_sort_rec(int *array, int *temp, size_t left, size_t right)
@@ -73,19 +90,3 @@ void merge_sort_rec(int *array, int *temp, size_t left, size_t right)
     merge(array, temp, left, mid, right);
 }
 
-/**
- * merge_sort - The top-level function that starts merge sort.
- */
-void merge_sort(int *array, size_t size)
-{
-    if (size < 2)
-        return;
-
-    int *temp = (int *)malloc(size * sizeof(int));
-    if (!temp)
-        return;
-
-    merge_sort_rec(array, temp, 0, size - 1);
-
-    free(temp);
-}
