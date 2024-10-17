@@ -65,7 +65,6 @@ void merge(int *array, int left, int mid, int right, int *temp)
     print_array(array + left, mid - left + 1);
     printf("[right]: ");
     print_array(array + mid + 1, right - mid);
-    printf("\n");
 
     while (i <= mid && j <= right)
     {
@@ -86,5 +85,4 @@ void merge(int *array, int left, int mid, int right, int *temp)
 
     printf("[Done]: ");
     print_array(array + left, right - left + 1);
-    printf("\n");
 }
