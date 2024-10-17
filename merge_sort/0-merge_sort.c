@@ -24,7 +24,7 @@ void merge_sort(int *array, size_t size)
 	if (size < 2)
 		return;
 
-	int *temp = (int *)malloc(size * sizeof(int));
+	int *temp = malloc(size * sizeof(int));
 	if (!temp)
 		return;
 
