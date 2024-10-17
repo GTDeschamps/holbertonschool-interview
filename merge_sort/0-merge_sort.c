@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include "sort.h"
 
+
 /**
  * merge_sort_rec - Recursively divides and sorts the array using merge sort.
  */
@@ -16,6 +17,8 @@ void merge(int *array, int left, int mid, int right, int *temp);
 
 /**
  * merge_sort - The top-level function that starts merge sort.
+ *
+ * Return: void
  */
 void merge_sort(int *array, size_t size)
 {
@@ -33,6 +36,8 @@ void merge_sort(int *array, size_t size)
 
 /**
  * merge_sort_rec - Recursively divides and sorts the array using merge sort.
+ *
+ * Return: void
  */
 void merge_sort_rec(int *array, int *temp, int left, int right)
 {
@@ -55,6 +60,8 @@ void merge_sort_rec(int *array, int *temp, int left, int right)
  * merge - Merges two arrays of array[].
  * First sub-array is arr[left..mid]
  * Second sub-array is arr[mid+1..right]
+ *
+ * Return: void
  */
 void merge(int *array, int left, int mid, int right, int *temp)
 {
