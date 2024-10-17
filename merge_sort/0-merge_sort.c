@@ -25,7 +25,6 @@ void merge_sort(int *array, size_t size)
 		return;
 
 	int *temp = (int *)malloc(size * sizeof(int));
-	
 	if (!temp)
 		return;
 
@@ -62,7 +61,9 @@ void merge_sort_rec(int *array, int *temp, int left, int right)
  */
 void merge(int *array, int left, int mid, int right, int *temp)
 {
-	int i = left, j = mid + 1, k = left;
+	int i = left;
+	int j = mid + 1;
+	int k = left;
 
 	printf("Merging...\n");
 	printf("[left]: ");
