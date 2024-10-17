@@ -25,6 +25,7 @@ void merge_sort(int *array, size_t size)
 		return;
 
 	int *temp = (int *)malloc(size * sizeof(int));
+	
 	if (!temp)
 		return;
 
@@ -45,13 +46,10 @@ void merge_sort_rec(int *array, int *temp, int left, int right)
 
 	int mid = left + (right - left + 1) / 2 - 1;
 
-	// Sort the left part
 	merge_sort_rec(array, temp, left, mid);
 
-	// Sort the right part
 	merge_sort_rec(array, temp, mid + 1, right);
 
-	// Merge the sorted parts
 	merge(array, left, mid, right, temp);
 }
 
