@@ -11,7 +11,7 @@ def makeChange(coins, total):
 
     # Initialize the dp array where dp[i] is the minimum number of coins
     # need to make i.
-    dp = [float('inf')]*(total + 1)
+    dp = [float('inf')] * (total + 1)
     dp[0] = 0 # 0 coins are needed to make 0
 
     # iterate over all amounts from 1 to total
