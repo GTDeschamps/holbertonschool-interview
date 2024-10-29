@@ -31,7 +31,7 @@ List *add_node_end(List **list, char *str)
 	else
 	{
 		List *tail = (*list)->prev;
-		
+
 		new_node->next = *list;
 		new_node->prev = tail;
 		tail->next = new_node;
