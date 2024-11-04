@@ -6,6 +6,7 @@
 int get_max(int *array, size_t size)
 {
 	int max = array[0];
+
 	for (size_t i = 1; i < size; i++)
 	{
 		if (array[i] > max)
@@ -40,8 +41,8 @@ void counting_sort(int *array, size_t size, int exp)
 	for (int i = size - 1; i >= 0; i--)
 	{
 		int index = (array[i] / exp) % 10;
-		output[count[index] - 1] = array[i];
 
+		output[count[index] - 1] = array[i];
 		count[index]--;
 	}
 
