@@ -13,7 +13,7 @@ int get_max(int *array, size_t size)
 			max = array[i];
 		}
 	}
-	return max;
+	return (max);
 }
 
 /* Counting sort for each digit */
@@ -26,6 +26,7 @@ void counting_sort(int *array, size_t size, int exp)
 	for (size_t i = 0; i < size; i++)
 	{
 		int index = (array[i] / exp) % 10;
+
 		count[index]++;
 	}
 
@@ -40,6 +41,7 @@ void counting_sort(int *array, size_t size, int exp)
 	{
 		int index = (array[i] / exp) % 10;
 		output[count[index] - 1] = array[i];
+
 		count[index]--;
 	}
 
@@ -66,7 +68,8 @@ void radix_sort(int *array, size_t size)
 	/* Apply counting sort for each digit */
 	for (int exp = 1; max / exp > 0; exp *= 10)
 	{
+		/* Print array after sorting each digit place */
 		counting_sort(array, size, exp);
-		print_array(array, size); // Print array after sorting each digit place
+		print_array(array, size);
 	}
 }
