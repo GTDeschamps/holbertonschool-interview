@@ -2,7 +2,13 @@
 #include <stdio.h>
 #include "sort.h"
 
-/* Helper function to find the maximum value in the array */
+/**
+ * get_max - find the maximum value in array.
+ * @array: A pointer to the first element of the array to search in.
+ * @size: The number of elements in the array.
+ *
+ * Return: max
+ */
 int get_max(int *array, size_t size)
 {
 	int max = array[0];
@@ -17,7 +23,13 @@ int get_max(int *array, size_t size)
 	return (max);
 }
 
-/* Counting sort for each digit */
+/**
+ * counting_sort - counting sort for each digit.
+ * @array: A pointer to the first element of the array to search in.
+ * @size: The number of elements in the array.
+ *
+ * Return: void
+ */
 void counting_sort(int *array, size_t size, int exp)
 {
 	int *output = malloc(size * sizeof(int));
@@ -55,7 +67,14 @@ void counting_sort(int *array, size_t size, int exp)
 	free(output);
 }
 
-/* Radix Sort implementation */
+/**
+ * radix_sort - function that sorts an array of integers
+ *              in ascending order using the Radix sort algorithm
+ * @array: A pointer to the first element of the array to search in.
+ * @size: The number of elements in the array.
+ *
+ * Return: void
+ */
 void radix_sort(int *array, size_t size)
 {
 	if (size < 2)
