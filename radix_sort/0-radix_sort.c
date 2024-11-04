@@ -27,6 +27,7 @@ int get_max(int *array, size_t size)
  * counting_sort - counting sort for each digit.
  * @array: A pointer to the first element of the array to search in.
  * @size: The number of elements in the array.
+ * @exp: exposant to find index
  *
  * Return: void
  */
