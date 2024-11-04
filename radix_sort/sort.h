@@ -13,7 +13,7 @@ void print_array(const int *array, size_t size);
 
 /**
  * radix_sort - function that sorts an array of integers
- * 		in ascending order using the Radix sort algorithm
+ *              in ascending order using the Radix sort algorithm
  * @array: A pointer to the first element of the array to search in.
  * @size: The number of elements in the array.
  *
