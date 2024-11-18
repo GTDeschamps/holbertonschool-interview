@@ -56,6 +56,8 @@ int binary_tree_is_bst(const binary_tree_t *tree)
  */
 int binary_tree_is_avl(const binary_tree_t *tree)
 {
+	int left_height;
+	int right_height;
 
 	if (tree == NULL)
 		return (0);
