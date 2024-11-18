@@ -34,7 +34,7 @@ size_t binary_tree_height(const binary_tree_t *tree)
 int binary_tree_is_bst(const binary_tree_t *tree)
 {
 	if (tree == NULL)
-		return (1);
+		return (0);
 
 	if (tree->left != NULL && tree->left->n >= tree->n)
 		return (0);
@@ -61,6 +61,9 @@ int binary_tree_is_avl(const binary_tree_t *tree)
 
 	if (tree == NULL)
 		return (0);
+
+	if (tree->left == NULL && tree->right == NULL)
+		return (1); // It's an AVL tree
 
 	if (!binary_tree_is_bst(tree))
 		return (0);
