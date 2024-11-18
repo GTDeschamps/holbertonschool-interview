@@ -56,8 +56,6 @@ int binary_tree_is_bst(const binary_tree_t *tree)
  */
 int binary_tree_is_avl(const binary_tree_t *tree)
 {
-	int left_height = 0;
-	int right_height = 0;
 
 	if (tree == NULL)
 		return (0);
@@ -74,6 +72,7 @@ int binary_tree_is_avl(const binary_tree_t *tree)
 	if (abs(left_height - right_height) > 1)
 		return (0);
 
+	// Recursively check the left and right subtrees
 	if (!binary_tree_is_avl(tree->left) || !binary_tree_is_avl(tree->right))
 		return (0);
 
