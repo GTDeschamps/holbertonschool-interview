@@ -12,7 +12,7 @@ def pascal_triangle(n):
         List[List[int]]: A list of lists, where each inner list represents
                         a row in Pascal's triangle. The outer list contains
                         all the rows generated.
-                        
+
     Example:
         If n = 5, the function will return:
         [
