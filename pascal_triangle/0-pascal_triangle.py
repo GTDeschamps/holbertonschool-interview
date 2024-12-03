@@ -1,4 +1,5 @@
 #!/usr/bin/python3
+
 def pascal_triangle(n):
     """
     This function returns a list of lists of integers
@@ -33,11 +34,11 @@ def pascal_triangle(n):
 
     # Generate each row of Pascal's triangle
     for i in range(1, n):
-        row = [1] # Start each row with a 1
+        row = [1]  # Start each row with a 1
         for j in range(1, i):
             # Each triangle element is the sum of the two elements above it
-            row.append(triangle[i-1][j-1] + triangle[i-1][j])
-        row.append(1) # End each row with a 1
-        triangle.append(row) # Add the completed row to the triangle
+            row.append(triangle[i - 1][j - 1] + triangle[i - 1][j])
+        row.append(1)  # End each row with a 1
+        triangle.append(row)  # Add the completed row to the triangle
 
-    return triangle # Return the completed Pascal's triangle
+    return triangle  # Return the completed Pascal's triangle
