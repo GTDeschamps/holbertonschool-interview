@@ -1,4 +1,8 @@
 #!/usr/bin/python3
+"""
+This module contains the function to calculate the area of a rectangle
+"""
+
 
 def pascal_triangle(n):
     """
