@@ -1,4 +1,8 @@
 #!/usr/bin/python3
+"""
+Prime Game is a game to eliminate prime number in a list
+with x rounds of game between two players.
+"""
 
 def isWinner(x, nums):
     """
