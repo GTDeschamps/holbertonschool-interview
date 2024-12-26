@@ -24,7 +24,10 @@ def isWinner(x, nums):
     max_num = max(nums)
 
     for n in nums:
-        primes = sieve_of_erathosthenes(max_num)
+        if n <= 0:
+            winner = "Ben"
+        else:
+            primes = sieve_of_erathosthenes(max_num)
         winner = determine_winner(primes)
         if winner == "Maria":
             maria_wins += 1
@@ -50,13 +53,13 @@ def sieve_of_erathosthenes(max_n):
         A list of prime numbers up to n.
     """
 
-    is_primes = [True] * (max_n+1)
-    is_primes[0] = is_primes[1] = False
+    primes = [True] * (max_n+1)
+    primes[0] = primes[1] = False
     for i in range(2, int(max_n**0.5) + 1):
-        if is_primes[i]:
+        if primes[i]:
             for j in range(i*i, max_n+1, i):
-                is_primes[j] = False
-    return is_primes
+                primes[j] = False
+    return [i for i, is_prime in enumerate(primes) if is_prime]
 
 
 
@@ -72,7 +75,7 @@ def determine_winner(primes):
         or "None" if the game is a draw.
     """
 
-    if len(primes) %2 == 0:
+    if len(primes) % 2 == 0:
         return "Ben"
     else:
         return "Maria"
